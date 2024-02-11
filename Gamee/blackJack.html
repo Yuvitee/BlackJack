@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<HTML>
+<meta name="viewport" content="width=device-width">
+<HEAD>
+<TITLE>James' BlackJack Game</TITLE>
+<link href="blackJackCSS.css" rel="stylesheet">
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Extras --> 
+//I made a button hide at the beginning and it will display when the game ends. Also, all my textboxs are readonly. 
+//I design my buttons and my links to look cool and different with different animation.
+//My computer is smarter, it will draw card when its card's value is lower than the player rather than only drawing three cards.
+//It will also display a differrnt gif after the game ends.
+//I insert some emojis and a cool font family to my text on line.
+var robotWin= 0;
+var yourWin= 0;
+var gamePlayed = 0;
+<!-- This function makes a reset button after the game ends -->
+  function myNewButton() {
+      var x = document.getElementById("login");
+      if (x.style.display === "none") {
+      x.style.display = "block";
+      } 
+      }
+<!-- This is a page reload function-->
+  function newGame(){
+      window.location.reload();
+      }
+<!-- This two function will display gameover or youwin gif after the game ends -->	  
+  function gameWin() {
+      document.getElementById("image1").src = "youwin.gif";
+      }	  
+  function gameOver() {
+      document.getElementById("image1").src = "gameover2.gif";
+      }
+<!-- Reset the text box value -->
+  function resetWholeGame() {
+      document.blackForm.yourTotal.value="";
+	  document.blackForm.yourCards.value="";
+	  document.blackForm.robotTotal.value="";
+	  document.blackForm.gPlay.value="";
+	  document.blackForm.yourVictory.value="";
+	  document.blackForm.computerWin.value="";
+	  }
+  function resetValue() {
+      document.blackForm.yourTotal.value=""
+	  document.blackForm.yourCards.value=""
+	  document.blackForm.robotTotal.value=""
+      }
+<!-- Record game plays -->
+  function recordPlay() {
+      gamePlayed = gamePlayed + 1
+	  document.blackForm.gPlay.value=gamePlayed
+      }
+<!-- Record player wins -->
+  function recordYWin() {
+      yourWin= yourWin + 1
+	  document.blackForm.yourVictory.value=yourWin
+      }
+<!-- Record computer wins -->
+  function recordRWin() {
+      robotWin= robotWin + 1
+	  document.blackForm.computerWin.value=robotWin
+      }
+  function getRanNum() {
+//This gets a random card for the player
+	  var randomCard = Math.floor(Math.random()*10)+1;
+	  document.blackForm.yourCards.value=randomCard;
+	  
+//This saves the total of the random card in a textbox
+	  var yTNumber = Number(document.blackForm.yourTotal.value)
+	  yTNumber = randomCard + yTNumber;
+      document.blackForm.yourTotal.value=yTNumber;
+		
+//This statement checks if the player went over 21  
+	 if(document.blackForm.yourTotal.value> 21) {
+	  alert("You lose cause you went over 21 🤫")
+	  resetValue()
+	  recordRWin()
+      recordPlay()
+	  }
+//These statements checks who is the final winner after 10 rounds, (reset the textbox,pop out a new game button,gameover gif displays) 
+	 if (gamePlayed == 10 && yourWin > robotWin) {
+      alert("Congrats, you win the game. 🤙🤙🤙" );
+	  resetWholeGame()
+	  myNewButton()
+	  gameWin()
+      }
+	 else if (gamePlayed == 10 && robotWin > yourWin) {
+	  alert("Robot wins the game, how do you lose to a robot?👀👀👀");
+	  resetWholeGame()
+	  myNewButton()
+	  gameOver()
+	  }
+	 else if (gamePlayed == 10 && robotWin == yourWin) {
+	  alert("You and the robot tied the game!");
+	  resetWholeGame()
+	  myNewButton()
+	  gameOver()
+	  }
+      }
+	
+  function robotRanNum() {
+     //This makes sure that the player draws card first  
+	 if(document.blackForm.yourTotal.value=="") {
+	  alert("Your need to draw a cards first.");
+	  }
+	 //This gets random cards for the computer 
+	 else {	  
+	  var computerTotal=0
+	  var robotCard = Math.floor(Math.random()*10)+1
+	  alert("Robot get a : " + robotCard + " 🃏")
+	  computerTotal = computerTotal + robotCard
+	  document.blackForm.robotTotal.value = computerTotal;
+     //This makes the computer draws more card when its card vaule is lower than the player
+	 while( computerTotal <  Number(document.blackForm.yourTotal.value) ) {
+	  var robotSCard = Math.floor(Math.random()*10)+1;
+	  alert("Robot get a : " + robotSCard + " 🃏")
+	  computerTotal = computerTotal + robotSCard
+      document.blackForm.robotTotal.value = computerTotal;
+      }
+	  alert("Robot total is : " + computerTotal + " 🃏")
+	 //This statement checks if the computer went over 21  
+	 if(document.blackForm.robotTotal.value> 21) {
+	  alert("Oops,you win, the robot went over 21🤖. ")
+	  resetValue()
+	  recordYWin()
+	  recordPlay()
+	  }
+	 //These statements compare player's and computer's total,(record plays and wins)
+	 else if ( Number(document.blackForm.robotTotal.value) > Number(document.blackForm.yourTotal.value) ) {
+	  alert("Robot's draws are closer 21, robot wins🤖. ")
+	  resetValue()
+	  recordRWin()
+	  recordPlay()
+	  }
+	 else if ( Number(document.blackForm.robotTotal.value) < Number(document.blackForm.yourTotal.value) ) {
+	  alert("Your draws are closer 21, you win👍. ")
+	  resetValue()
+	  recordYWin()
+	  recordPlay()
+	  }
+	 else if ( Number(document.blackForm.robotTotal.value) == Number(document.blackForm.yourTotal.value) ) {
+	  alert("Your and the robot tied, you guys both add one win. ")
+	  resetValue()
+	  recordYWin()
+	  recordRWin()
+	  recordPlay()
+	  }
+	 //These statements checks who is the final winner after 10 rounds
+	 if (gamePlayed == 10 && yourWin > robotWin ) {
+      alert("Congrats, you win the game. 🤙🤙🤙 ");
+	  resetWholeGame()
+	  myNewButton()
+	  gameWin()
+	  }
+	 else if (gamePlayed == 10 && robotWin > yourWin) {
+	  alert("Robot wins the game, how do you lose to a robot?👀👀👀");
+	  resetWholeGame()
+	  myNewButton()
+	  gameOver()
+	  }
+	 else if (gamePlayed == 10 && robotWin == yourWin) {
+	  alert("You and the robot tied the game!");
+      resetWholeGame()
+	  myNewButton()
+	  gameOver()
+	  }
+	  }
+	  }
+			
+ 
+</SCRIPT>
+</HEAD>
+<!-- A home button links to the home page-->
+ <header>
+ <a href="index.html" class="a1">Home</a> 
+</header>
+<BODY>
+        <!-- Title with emojis -->
+		<h1>BlackJack Game !!! &#127922;</h1>
+		<hr>
+		<FORM NAME="blackForm">
+		
+		<!-- readonly textboxes and buttons-->		
+		<INPUT CLASS="button1" TYPE="button" NAME="hitButton" VALUE="Hit" onClick="getRanNum()">
+		<INPUT CLASS="button1" TYPE="button" NAME="standButton" VALUE="Stand" onClick="robotRanNum()">
+		<p>Your cards<INPUT CLASS="numberText" TYPE="text" NAME="yourCards" VALUE="" SIZE="10" readonly></p>
+		<p>Your total<INPUT CLASS="numberText" TYPE="text" NAME="yourTotal" VALUE="" SIZE="10" readonly></p>
+		<p>Robot total<INPUT CLASS="numberText" TYPE="text" NAME="robotTotal" VALUE="" SIZE="10" readonly></p>
+		<hr>
+		<p>Game Played<INPUT CLASS="numberText" TYPE="text" NAME="gPlay" VALUE="" SIZE="10" readonly></p>
+		<p>Your wins<INPUT CLASS="numberText" TYPE="text" NAME="yourVictory" VALUE="" SIZE="10" readonly></p>
+		<p>Computer wins<INPUT CLASS="numberText" TYPE="text" NAME="computerWin" VALUE="" SIZE="10" readonly></p>
+	    <IMG SRC="backGroundL.gif" id="image1"  style="width:150px;height:100px;" onclick="newGame()">
+		<!-- A New game button displays after game ends -->
+		<div>
+		<button CLASS="button2" id="login" style="display: none;" Onclick="newGame()">Click here for the New Game
+		</div>
+
+
+		 
+</FORM> 
+</BODY>
+</HTML>
+

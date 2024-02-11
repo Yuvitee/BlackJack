@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css?family=Audiowide");
+body {
+  text-align: center;
+  background-image: url("star.gif");
+  background-size: cover;
+  
+}
+header {
+	text-align: left;
+	text-decoration: none;
+}
+
+.a1 {
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 12px;
+  background-image: url("buttonImage.jpg");
+}
+
+html {
+  font-family: "Audiowide", sans-serif;
+  color: white;
+}
+.button1 {
+font-family: "Audiowide", sans-serif;
+color: gary !important;
+text-transform: uppercase;
+background: #ffffff;
+padding: 6px;
+border: 2px solid #E0FFFF !important;
+border-radius: 6px;
+display: inline-block;
+transition: all 0.3s ease 0s;
+}
+.button1:hover {
+color: #494949 !important;
+border-radius: 50px;
+border-color: #494949 !important;
+transition: all 0.3s ease 0s;
+}
+.numberText{
+font-family: "Audiowide", sans-serif;	
+}
+.numberText {
+	margin-top: 20px;
+}
+.button2 {
+font-family: "Audiowide", sans-serif;
+color: gary !important;
+text-transform: uppercase;
+background: #ffffff;
+padding: 6px;
+border: 2px solid #E0FFFF !important;
+border-radius: 6px;
+display: inline-block;
+transition: all 0.3s ease 0s;
+margin: 0 auto;
+
+}
+.button2:hover {
+color: #494949 !important;
+border-radius: 50px;
+border-color: #494949 !important;
+transition: all 0.3s ease 0s;
+}
+h1 {
+font-size: 60px;
+margin-top: 10px;
+}
+

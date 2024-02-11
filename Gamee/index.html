@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<TITLE>Welcome to the Game</TITLE>
+<meta name="viewport" content="width=device-width">
+<link href="indexCSS.css" rel="stylesheet">
+<!-- Extras -->
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Extras -->
+//I made a checkbox to make sure the play read the rules
+
+<!-- This function checks if the checkbox is check or not-->
+ function checkedBox() {
+ // if checked it goes to the game. 
+   if(gameRules.checkRules.checked){
+    alert("welcome to the game.")
+    window.location="blackJack.html"
+ }
+ //if not, it will alert the player
+   else {
+    alert("Did you read the rules??")
+ }
+ }
+ 
+</SCRIPT>
+</HEAD>
+<!--A home button links to the home page-->
+<header>
+ <a href="index.html">Home</a> 
+</header>
+ 
+<BODY>
+<FORM NAME="gameRules">
+    <!--Title and the rules for the game-->
+	<h1>Welcome to the BlackJack Game&#128512;</h1>
+	<h2>Rules for the Game</h2>
+    <br>In this game you will be play with a robot and asked if you would like to draw another card.</br>
+    <br>The computer will then pick a random number between 1 and 10 for you and display them in an alert.</br>
+    <br>If the total of your cards is over 21 you automatically lose that round.</br>
+    <br>If you have 21 or less, the robot always draws 3 cards (also between 1 and 10). </br>
+    <br>If the computer goes over 21 you win, if you both have the same total you draw, </br>
+	<br>if the computer is higher than you (but less than or equal to 21) it wins, and if the computer is lower than you, you win.</br>
+	<!-- background gif -->
+    <IMG SRC="gifimage.gif">
+	<!-- A checkbox makes sure the player read the rules and a button goes to the game-->
+	 I have read the rules of the game🔥<INPUT TYPE="checkbox" NAME="checkRules">
+    <input class="button1" type="button" NAME="nCheck" Value="Start the Game" onClick="checkedBox()" >
+		
+		
+</Form>	
+</BODY>
+</HTML>
